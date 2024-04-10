@@ -22,12 +22,12 @@ class Viaje{
         private $pasajeros;//arreglo informacion de pasajeros
         private $responsableV;
         
-    public function __construct($codiViaje, $lugar, $maxPersonas, $responsable,$cliente  ){
+    public function __construct($codiViaje, $lugar, $maxPersonas, $responsable, $cliente  ){
         $this->codigoViaje=$codiViaje;
         $this->destino=$lugar;
         $this->cantMaxP=$maxPersonas;
         $this->responsableV=$responsable;
-        $this->pasajeros=[$cliente];
+        $this->pasajeros=$cliente;
     }
 // metodos acceso get
     public function getCodigoViaje() {
@@ -63,7 +63,7 @@ class Viaje{
     }
 
     public function setPasajeros($cliente) {
-         $this->pasajeros = [$cliente];
+         $this->pasajeros = $cliente;
     }
     
     public function setReponsableV($responsable){
@@ -88,12 +88,15 @@ public function pasajeroExistente($pasajeros, $dni){
 }
 public function agregarPasajero($pasajeros, $unPasajero) {
     $valido=false;
-    if (count($this->getPasajeros()) < $this->getCantMaxP()) {
+    $colecPasajeros=$this->getPasajeros();
+    if (count($colecPasajeros) < $this->getCantMaxP()) {
         if($this->pasajeroExistente($pasajeros, $unPasajero)==false){
-            $this->pasajeros=[$unPasajero];
+            $np=count($colecPasajeros);
+            $colecPasajeros[$np]=$unPasajero;
             $valido=true;
         }
     }
+    $this->setPasajeros($colecPasajeros);
     return $valido;
  }
 
@@ -102,14 +105,9 @@ public function agregarPasajero($pasajeros, $unPasajero) {
          "\nDestino: ".$this->getDestino().
          "\nCapacidad Maxima de Pasajeros: ".$this->getCantMaxP().
          "\nEmpleado Responsable:\n ".$this->getResponsableV().
-         "\nPasajeros: \n"; 
-
-         foreach ($this->getPasajeros() as $pasajero) {
-              foreach($pasajero as $i){ 
-                $cadena .= $i. "\n";
-              }
-           }
-
+         "\nPasajeros Actuales: ".count($this->getPasajeros()); 
+   
+        
     return $cadena;
     }
 

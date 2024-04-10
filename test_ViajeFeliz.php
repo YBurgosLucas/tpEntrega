@@ -14,9 +14,9 @@
     $colePasajero=coleccionPasajero();
     $pasajero1=new Pasajero($colePasajero[0][0],$colePasajero[0][1],$colePasajero[0][2],$colePasajero[0][3]);
     $pasajero2=new Pasajero($colePasajero[1][0],$colePasajero[1][1],$colePasajero[1][2],$colePasajero[1][3]);
-    $coleccion=[$pasajero1, $pasajero2];
+    $coleccionDatosPasajeros=[$pasajero1, $pasajero2];
     $responsableV=new ResponsableV(1,1234, "juan", "gonzalez" );
-    $viaje1 = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccion );
+    $viaje1 = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccionDatosPasajeros );
     $coleccionViaje=[$viaje1];
     do{
         echo "ingresar Opcion:\n";
@@ -29,6 +29,9 @@
         $opcion=trim(fgets(STDIN));
         switch($opcion){
             case 1:
+                echo "En cual viaje desea agregar un pasajero?\n";
+                $opcionViaje=trim(fgets(STDIN));
+                $opcionViaje--;
                 echo "ingrese Nombre: ";
                 $nombre=trim(fgets(STDIN));
                 echo "ingrese Apellido:";
@@ -38,13 +41,15 @@
                 echo "ingresar Nro.Telefono:";
                 $telefono=trim(fgets(STDIN));
                 $pasajero3= new Pasajero($nombre, $apellido, $dni, $telefono);
-                if($viaje->agregarPasajero($coleccion, $dni)){
+                if($coleccionViaje[$opcionViaje]->agregarPasajero($coleccionDatosPasajeros, $dni)){
                     echo "agregado Exitosamente.\n";
-                    $i=count($coleccion);
-                    $coleccion[$i]=$pasajero3;
+                    echo "*****************************************************************************\n";
+                    $i=count($coleccionDatosPasajeros);
+                    $coleccionDatosPasajeros[$i]=$pasajero3;
                 }
                 else{
                     echo "no se pudo agregar pasajero ya existente o se supero la cant.Maxima de pasajeros\n";
+                    echo "*****************************************************************************\n";
                 }
             break;
             case 2:
@@ -64,7 +69,7 @@
                 $num=trim(fgetS(STDIN));
                 echo "*****************************************************************************\n";
                 $responsableV1=new ResponsableV($num, $numLicencia, $nombreE, $apellidoE);
-                $viaje2= new Viaje($nuevoCod, $nuevoDestino, $cantPasajeros, $responsableV1, $coleccion);
+                $viaje2= new Viaje($nuevoCod, $nuevoDestino, $cantPasajeros, $responsableV1, $coleccionDatosPasajeros);
                 $j=count($coleccionViaje);
                 $coleccionViaje[$j]=$viaje2;
 
@@ -79,16 +84,16 @@
                 $nuveoApellido=trim(fgets(STDIN));
                 echo "nuevo Nro.Telefono:";
                 $nuevoTelefono=trim(fgets(STDIN));
-                $coleccion[$opcionPasajero]->modificar($nuevoNom,$nuveoApellido, $nuevoTelefono);
+                $coleccionDatosPasajeros[$opcionPasajero]->modificar($nuevoNom,$nuveoApellido, $nuevoTelefono);
             
                 break;
             case 4:
                 echo "*****************************************************************************\n";
                 echo "Que viaje desea mostrar:\n";
-                $opcionViaje=trim(fgets(STDIN));
-                $opcionViaje--;
-                $Mostrar=$coleccionViaje[$opcionViaje];
-                echo $Mostrar."\n";
+                $nroViaje=trim(fgets(STDIN));
+                $nroViaje--;
+                $mostrar=$coleccionViaje[$nroViaje];
+                echo  $mostrar."\n";
                 break;
         }
     
