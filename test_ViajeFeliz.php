@@ -5,8 +5,9 @@
      
     function coleccionPasajero(){
         $colePasajero=[];
-        $colePasajero=[["emiro", "burgos", 1234567, 777777],
-                       ["yamel", "burgos", 6666, 8888]];
+        $colePasajero=[["luis", "lopez", 1234567, 777777],
+                       ["juan", "contreras", 7654321, 888888]];
+
         return $colePasajero;
     }
     
@@ -15,12 +16,13 @@
     $pasajero2=new Pasajero($colePasajero[1][0],$colePasajero[1][1],$colePasajero[1][2],$colePasajero[1][3]);
     $coleccion=[$pasajero1, $pasajero2];
     $responsableV=new ResponsableV(1,1234, "juan", "gonzalez" );
-    $viaje = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccion );
+    $viaje1 = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccion );
+    $coleccionViaje=[$viaje1];
     do{
         echo "ingresar Opcion:\n";
-        echo "1-agregar Pasajero\n";
-        echo "2-agregar empleado responsable\n";
-        echo "3-modificar\n";
+        echo "1-agregar nuevo Pasajero\n";
+        echo "2-agregar un nuevo viaje y un empleado responsable \n";
+        echo "3-modificar Pasajero\n";
         echo "4-Ver viaje\n";
         echo "5-Salir\n";
         echo "opcion:";
@@ -46,7 +48,25 @@
                 }
             break;
             case 2:
-                
+                echo "Agregar Cod.Viaje:";
+                $nuevoCod=trim(fgets(STDIN));
+                echo "Agregar nuevo destino: ";
+                $nuevoDestino=trim(fgets(STDIN));
+                echo "Cantidad de pasajeros: ";
+                $cantPasajeros=trim(fgets(STDIN));
+                echo "nombre empleado:";
+                $nombreE=trim(fgets(STDIN));
+                echo "apellido Empleado:";
+                $apellidoE=trim(fgets(STDIN));
+                echo "Nro.licencia: ";
+                $numLicencia=trim(fgets(STDIN));
+                echo "nro.Empleado: ";
+                $num=trim(fgetS(STDIN));
+                echo "*****************************************************************************\n";
+                $responsableV1=new ResponsableV($num, $numLicencia, $nombreE, $apellidoE);
+                $viaje2= new Viaje($nuevoCod, $nuevoDestino, $cantPasajeros, $responsableV1, $coleccion);
+                $j=count($coleccionViaje);
+                $coleccionViaje[$j]=$viaje2;
 
                 break;
             case 3:
@@ -63,9 +83,13 @@
             
                 break;
             case 4:
-                echo"*************************************************\n";
-                $viaje = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccion );
-                echo $viaje."\n";
+                echo "*****************************************************************************\n";
+                echo "Que viaje desea mostrar:\n";
+                $opcionViaje=trim(fgets(STDIN));
+                $opcionViaje--;
+                $Mostrar=$coleccionViaje[$opcionViaje];
+                echo $Mostrar."\n";
+                break;
         }
     
     }while($opcion!= 5);

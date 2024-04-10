@@ -51,4 +51,10 @@
              "\nNombre y Apellido: ".$this->getNombre()." ".$this->getApellido();
         return $cad;
     }
+    public function modificar($nuevalicencia, $nuevonomb, $nuevoApe){
+        $this->setNroLicencia($nuevalicencia);
+        $this->setNombre($nuevonomb);
+        $this->setApellido($nuevoApe);
+        
+    }
     }

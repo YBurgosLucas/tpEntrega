@@ -22,7 +22,7 @@ class Viaje{
         private $pasajeros;//arreglo informacion de pasajeros
         private $responsableV;
         
-    public function __construct($codiViaje, $lugar, $maxPersonas,$responsable,$cliente  ){
+    public function __construct($codiViaje, $lugar, $maxPersonas, $responsable,$cliente  ){
         $this->codigoViaje=$codiViaje;
         $this->destino=$lugar;
         $this->cantMaxP=$maxPersonas;
