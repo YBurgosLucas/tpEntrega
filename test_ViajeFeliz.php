@@ -15,13 +15,14 @@
     $pasajero1=new Pasajero($colePasajero[0][0],$colePasajero[0][1],$colePasajero[0][2],$colePasajero[0][3]);
     $pasajero2=new Pasajero($colePasajero[1][0],$colePasajero[1][1],$colePasajero[1][2],$colePasajero[1][3]);
     $coleccionDatosPasajeros=[$pasajero1, $pasajero2];
+
     $responsableV=new ResponsableV(1,1234, "juan", "gonzalez" );
     $viaje1 = new Viaje(1234, "argentina", 3 ,$responsableV , $coleccionDatosPasajeros );
     $coleccionViaje=[$viaje1];
     do{
         echo "ingresar Opcion:\n";
         echo "1-agregar nuevo Pasajero\n";
-        echo "2-agregar un nuevo viaje y un empleado responsable \n";
+        echo "2-Modificar  empleado responsable \n";
         echo "3-modificar Pasajero\n";
         echo "4-Ver viaje\n";
         echo "5-Salir\n";
@@ -88,7 +89,7 @@
             
                 break;
             case 4:
-                echo "*****************************************************************************\n";
+                echo "*************************************************************************11****\n";
                 echo "Que viaje desea mostrar:\n";
                 $nroViaje=trim(fgets(STDIN));
                 $nroViaje--;

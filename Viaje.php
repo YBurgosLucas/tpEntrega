@@ -14,12 +14,12 @@ Modificar la clase Viaje para que ahora los pasajeros sean un objeto que tenga l
 
 Implementar las operaciones que permiten modificar el nombre, apellido y teléfono de un pasajero. Luego implementar la operación que agrega los pasajeros al viaje,
 solicitando por consola la información de los mismos. Se debe verificar que el pasajero no este cargado mas de una vez en el viaje. De la misma forma cargue la información del responsable del viaje. */
-include "Pasajero.php"; 
+
 class Viaje{
         private $codigoViaje;
         private $destino;
         private $cantMaxP;
-        private $pasajeros;//arreglo informacion de pasajeros
+        private $objtColecPasajeros;//arreglo informacion de pasajeros
         private $responsableV;
         
     public function __construct($codiViaje, $lugar, $maxPersonas, $responsable, $cliente  ){
