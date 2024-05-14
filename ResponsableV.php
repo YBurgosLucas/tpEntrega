@@ -2,7 +2,7 @@
 /*registre el número de empleado, número de licencia, nombre y apellido */
     class ResponsableV{
         private $nroEmpleado;
-        private $nroLicencia;
+        private $nroLicencia; //cambio
         private $nombre;
         private $apellido;
         

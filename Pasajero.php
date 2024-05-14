@@ -2,7 +2,7 @@
     class Pasajero{
         private $nombre;
         private $apellido; 
-        private $nroDocumento;
+        private $nroDocumento; //cambio
         private $telefono;
     
         public function __construct($nom, $apell, $dni, $movil){
